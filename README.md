@@ -37,5 +37,3 @@ O desenvolvimento será realizado utilizando uma plataforma de desenvolvimento d
 - **Notificações**: O sistema de notificações será a principal ferramenta para garantir que os lembretes sejam recebidos de maneira pontual.
 
 ---
-
-Se precisar de mais detalhes ou alterações, posso ajudar a expandir qualquer seção!
