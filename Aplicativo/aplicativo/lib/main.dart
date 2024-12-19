@@ -14,6 +14,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = ThemeMode.system; // Padrão: tema do sistema
   int _selectedIndex = 0; // Controla a aba selecionada
+  final PageController _pageController =
+      PageController(); // Controlador do PageView
 
   @override
   void initState() {
@@ -45,11 +47,16 @@ class _MyAppState extends State<MyApp> {
     _saveThemePreference(!isDark);
   }
 
-  // Função para mudar de aba
+  // Função para mudar de aba ao clicar
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    _pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -61,7 +68,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.black), // Atualizado
+          bodyLarge: TextStyle(color: Colors.black),
         ),
       ),
       darkTheme: ThemeData(
@@ -69,68 +76,73 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.black,
         textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.white), // Atualizado
+          bodyLarge: TextStyle(color: Colors.white),
         ),
       ),
-      themeMode: _themeMode, // Define o tema atual (claro, escuro ou sistema)
+      themeMode: _themeMode,
       home: Scaffold(
         appBar: AppBar(title: Text('Dark Mode Example')),
-        body: _getBodyContent(), // Exibe o conteúdo baseado na aba selecionada
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          children: <Widget>[
+            Center(child: Text('Alarmes')),
+            Center(child: Text('Consultas')),
+            Center(child: Text('Estatísticas')),
+            _preferenciasPage(),
+          ],
+        ),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex, // Índice da aba selecionada
-          onTap: _onItemTapped, // Muda a aba quando clicado
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
           backgroundColor: _themeMode == ThemeMode.dark
-              ? Colors.black // fundo escuro para tema escuro
-              : Colors.lightBlueAccent, // fundo pastel para tema claro
+              ? Colors.black
+              : Colors.lightBlueAccent,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/alarmes.png',
-                  width: 24, height: 24), // Ícone personalizado
+              icon: Image.asset(
+                'assets/images/alarmes.png',
+                width: 24,
+                height: 24,
+              ),
               label: 'Alarmes',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/consultas.png',
-                  width: 24, height: 24), // Ícone personalizado
+              icon: Image.asset(
+                'assets/images/consultas.png',
+                width: 24,
+                height: 24,
+              ),
               label: 'Consultas',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/estatisticas.png',
-                  width: 24, height: 24), // Ícone personalizado
+              icon: Image.asset(
+                'assets/images/estatisticas.png',
+                width: 24,
+                height: 24,
+              ),
               label: 'Estatísticas',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/preferencias.png',
-                  width: 24, height: 24), // Ícone personalizado
+              icon: Image.asset(
+                'assets/images/preferencias.png',
+                width: 24,
+                height: 24,
+              ),
               label: 'Preferências',
             ),
           ],
-          selectedItemColor: _themeMode == ThemeMode.dark
-              ? Colors.white // Cor dos itens selecionados para tema escuro
-              : Colors.black, // Cor dos itens selecionados para tema claro
-          unselectedItemColor: _themeMode == ThemeMode.dark
-              ? Colors
-                  .white70 // Cor dos itens não selecionados para tema escuro
-              : Colors
-                  .black54, // Cor dos itens não selecionados para tema claro
+          selectedItemColor:
+              _themeMode == ThemeMode.dark ? Colors.white : Colors.black,
+          unselectedItemColor:
+              _themeMode == ThemeMode.dark ? Colors.white70 : Colors.black54,
         ),
       ),
     );
-  }
-
-  // Método para retornar o conteúdo da tela baseado na aba selecionada
-  Widget _getBodyContent() {
-    switch (_selectedIndex) {
-      case 0:
-        return Center(child: Text('Alarmes'));
-      case 1:
-        return Center(child: Text('Consultas'));
-      case 2:
-        return Center(child: Text('Estatísticas'));
-      case 3:
-        return _preferenciasPage(); // Página de preferências com o botão de alternar tema
-      default:
-        return Center(child: Text('Alarmes'));
-    }
   }
 
   // Página de preferências com o botão para alternar o tema
@@ -141,21 +153,20 @@ class _MyAppState extends State<MyApp> {
         children: <Widget>[
           Text(
             'Preferências',
-            style:
-                Theme.of(context).textTheme.headlineMedium, // Título atualizado
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: toggleTheme, // Função que alterna o tema
+            onPressed: toggleTheme,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).primaryColor, // Cor do botão
+              backgroundColor: Theme.of(context).primaryColor,
             ),
             child: Text(
-              'Alternar Tema', // Texto do botão
+              'Alternar Tema',
               style: TextStyle(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white // Cor do texto para tema escuro
-                    : Colors.black, // Cor do texto para tema claro
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
           ),
