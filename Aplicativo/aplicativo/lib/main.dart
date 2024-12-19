@@ -90,6 +90,7 @@ class _MyAppState extends State<MyApp> {
             });
           },
           children: <Widget>[
+            Center(child: Text('Home')), // Novo conteúdo para a aba Home
             Center(child: Text('Alarmes')),
             Center(child: Text('Consultas')),
             Center(child: Text('Estatísticas')),
@@ -103,6 +104,14 @@ class _MyAppState extends State<MyApp> {
               ? Colors.black
               : Colors.lightBlueAccent,
           items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/images/home.png',
+                width: 24,
+                height: 24,
+              ),
+              label: 'Inicio',
+            ),
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/alarmes.png',
