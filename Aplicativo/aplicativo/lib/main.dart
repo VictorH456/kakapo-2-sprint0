@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:async';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart';
+import 'package:aplicativo/pages/home_page.dart';
+import 'package:aplicativo/pages/alarmes_page.dart';
+import 'package:aplicativo/pages/consultas_page.dart';
+import 'package:aplicativo/pages/estatisticas_page.dart';
+import 'package:aplicativo/pages/preferencias_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,33 +18,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system; // Padrão: tema do sistema
-  int _selectedIndex = 0; // Controla a aba selecionada
-  final PageController _pageController =
-      PageController(); // Controlador do PageView
+  ThemeMode _themeMode = ThemeMode.system;
+  int _selectedIndex = 0;
+  Locale? _locale;
+  final PageController _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    _loadThemePreference();
+    _loadPreferences();
   }
 
-  // Carregar a preferência de tema salva
-  Future<void> _loadThemePreference() async {
+  Future<void> _loadPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+    final languageCode = prefs.getString('languageCode') ?? 'en';
+
     setState(() {
       _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+      _locale = Locale(languageCode);
     });
   }
 
-  // Salvar a preferência de tema
   Future<void> _saveThemePreference(bool isDarkMode) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isDarkMode', isDarkMode);
   }
 
-  // Alternar entre Light Mode e Dark Mode
+  Future<void> _saveLanguagePreference(String languageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', languageCode);
+  }
+
   void toggleTheme() {
     final isDark = _themeMode == ThemeMode.dark;
     setState(() {
@@ -47,14 +58,20 @@ class _MyAppState extends State<MyApp> {
     _saveThemePreference(!isDark);
   }
 
-  // Função para mudar de aba ao clicar
+  void _changeLanguage(String languageCode) {
+    setState(() {
+      _locale = Locale(languageCode);
+    });
+    _saveLanguagePreference(languageCode);
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
     _pageController.animateToPage(
       index,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }
@@ -63,25 +80,23 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dark Mode Example',
-      theme: ThemeData(
-        brightness: Brightness.light, // Tema claro
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.black),
-        ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark, // Tema escuro
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.black,
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.white),
-        ),
-      ),
+      theme: _buildLightTheme(),
+      darkTheme: _buildDarkTheme(),
       themeMode: _themeMode,
+      locale: _locale,
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       home: Scaffold(
-        appBar: AppBar(title: Text('Dark Mode Example')),
+        appBar: AppBar(
+          title: Builder(
+            builder: (context) => Text(S.of(context).title),
+          ),
+        ),
         body: PageView(
           controller: _pageController,
           onPageChanged: (index) {
@@ -90,96 +105,93 @@ class _MyAppState extends State<MyApp> {
             });
           },
           children: <Widget>[
-            Center(child: Text('Home')), // Novo conteúdo para a aba Home
-            Center(child: Text('Alarmes')),
-            Center(child: Text('Consultas')),
-            Center(child: Text('Estatísticas')),
-            _preferenciasPage(),
+            HomePage(),
+            AlarmesPage(),
+            ConsultasPage(),
+            EstatisticasPage(),
+            PreferenciasPage(
+              toggleTheme: toggleTheme,
+              changeLanguage: _changeLanguage,
+            ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          backgroundColor: _themeMode == ThemeMode.dark
-              ? Colors.black
-              : Colors.lightBlueAccent,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/home.png',
-                width: 24,
-                height: 24,
+        bottomNavigationBar: Builder(
+          builder: (context) => BottomNavigationBar(
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            backgroundColor: _themeMode == ThemeMode.dark
+                ? Colors.black
+                : Colors.lightBlueAccent,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/home.png',
+                  width: 24,
+                  height: 24,
+                ),
+                label: S.of(context).home,
               ),
-              label: 'Inicio',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/alarmes.png',
-                width: 24,
-                height: 24,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/alarmes.png',
+                  width: 24,
+                  height: 24,
+                ),
+                label: S.of(context).alarms,
               ),
-              label: 'Alarmes',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/consultas.png',
-                width: 24,
-                height: 24,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/consultas.png',
+                  width: 24,
+                  height: 24,
+                ),
+                label: S.of(context).consultations,
               ),
-              label: 'Consultas',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/estatisticas.png',
-                width: 24,
-                height: 24,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/estatisticas.png',
+                  width: 24,
+                  height: 24,
+                ),
+                label: S.of(context).statistics,
               ),
-              label: 'Estatísticas',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/preferencias.png',
-                width: 24,
-                height: 24,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/preferencias.png',
+                  width: 24,
+                  height: 24,
+                ),
+                label: S.of(context).preferences,
               ),
-              label: 'Preferências',
-            ),
-          ],
-          selectedItemColor:
-              _themeMode == ThemeMode.dark ? Colors.white : Colors.black,
-          unselectedItemColor:
-              _themeMode == ThemeMode.dark ? Colors.white70 : Colors.black54,
+            ],
+            selectedItemColor:
+                _themeMode == ThemeMode.dark ? Colors.white : Colors.black,
+            unselectedItemColor:
+                _themeMode == ThemeMode.dark ? Colors.white70 : Colors.black54,
+          ),
         ),
       ),
     );
   }
 
-  // Página de preferências com o botão para alternar o tema
-  Widget _preferenciasPage() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'Preferências',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: toggleTheme,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).primaryColor,
-            ),
-            child: Text(
-              'Alternar Tema',
-              style: TextStyle(
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.black,
-              ),
-            ),
-          ),
-        ],
+  ThemeData _buildLightTheme() {
+    return ThemeData(
+      brightness: Brightness.light,
+      primarySwatch: Colors.blue,
+      scaffoldBackgroundColor: Colors.white,
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: Colors.black),
+      ),
+    );
+  }
+
+  ThemeData _buildDarkTheme() {
+    return ThemeData(
+      brightness: Brightness.dark,
+      primarySwatch: Colors.blue,
+      scaffoldBackgroundColor: Colors.black,
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: Colors.white),
       ),
     );
   }

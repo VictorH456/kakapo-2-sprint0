@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "home": "Home",
+  "alarms": "Alarms",
+  "consultations": "Consultations",
+  "statistics": "Statistics",
+  "preferences": "Preferences",
+  "toggleTheme": "Toggle Theme",
+  "language": "Language",
+  "english": "English",
+  "portuguese": "Portuguese",
+  "spanish": "Spanish",
+  "title": "App Title"
+
+}

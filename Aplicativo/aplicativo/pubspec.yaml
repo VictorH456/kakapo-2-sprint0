@@ -8,16 +8,29 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+  intl: any
   shared_preferences: ^2.0.7
 
 dev_dependencies:
+  flutter_gen: ^5.8.0
   flutter_test:
     sdk: flutter
+  intl_utils: ^2.5.1
+
 
 flutter:
   assets:
+    - lib/l10n/intl_es.arb
+    - lib/l10n/intl_en.arb
+    - lib/l10n/intl_pt.arb
     - assets/images/alarmes.png
     - assets/images/consultas.png
     - assets/images/estatisticas.png
     - assets/images/preferencias.png
     - assets/images/home.png
+    - assets/images/espanhol.png
+    - assets/images/ingles.png
+    - assets/images/portugues.png
+    - assets/images/mundo.png

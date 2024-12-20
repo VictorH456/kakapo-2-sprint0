@@ -1,0 +1,14 @@
+{
+  "@@locale": "es",
+  "home": "Inicio",
+  "alarms": "Alarmas",
+  "consultations": "Consultas",
+  "statistics": "Estadísticas",
+  "preferences": "Preferencias",
+  "toggleTheme": "Alternar Tema",
+  "language": "Idioma",
+  "english": "Inglés",
+  "portuguese": "Portugués",
+  "spanish": "Español",
+  "title": "Título de la Aplicación"
+}
