@@ -22,17 +22,31 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addAlarm": MessageLookupByLibrary.simpleMessage("Agregar alarma"),
         "alarms": MessageLookupByLibrary.simpleMessage("Alarmas"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "close": MessageLookupByLibrary.simpleMessage("Cerrar"),
+        "compartment": MessageLookupByLibrary.simpleMessage("Compartimento"),
         "consultations": MessageLookupByLibrary.simpleMessage("Consultas"),
+        "days": MessageLookupByLibrary.simpleMessage("Dias"),
+        "delete": MessageLookupByLibrary.simpleMessage("delete"),
+        "description": MessageLookupByLibrary.simpleMessage("Descripción"),
         "english": MessageLookupByLibrary.simpleMessage("Inglés"),
+        "friday": MessageLookupByLibrary.simpleMessage("Viernes"),
         "home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "language": MessageLookupByLibrary.simpleMessage("Idioma"),
+        "monday": MessageLookupByLibrary.simpleMessage("Lunes"),
+        "name": MessageLookupByLibrary.simpleMessage("Nombre"),
         "portuguese": MessageLookupByLibrary.simpleMessage("Portugués"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferencias"),
+        "save": MessageLookupByLibrary.simpleMessage("Guardar"),
         "spanish": MessageLookupByLibrary.simpleMessage("Español"),
         "statistics": MessageLookupByLibrary.simpleMessage("Estadísticas"),
-        "title":
-            MessageLookupByLibrary.simpleMessage("Título de la Aplicación"),
-        "toggleTheme": MessageLookupByLibrary.simpleMessage("Alternar Tema")
+        "thursday": MessageLookupByLibrary.simpleMessage("Jueves"),
+        "time": MessageLookupByLibrary.simpleMessage("intervalo"),
+        "title": MessageLookupByLibrary.simpleMessage("Título de la App"),
+        "toggleTheme": MessageLookupByLibrary.simpleMessage("Cambiar Tema"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Martes"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Miércoles")
       };
 }

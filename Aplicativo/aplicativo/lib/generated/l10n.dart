@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Consultations`
+  /// `appointment`
   String get consultations {
     return Intl.message(
-      'Consultations',
+      'appointment',
       name: 'consultations',
       desc: '',
       args: [],
@@ -155,6 +155,156 @@ class S {
     return Intl.message(
       'App Title',
       name: 'title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Alarm`
+  String get addAlarm {
+    return Intl.message(
+      'Add Alarm',
+      name: 'addAlarm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Compartment`
+  String get compartment {
+    return Intl.message(
+      'Compartment',
+      name: 'compartment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `interval`
+  String get time {
+    return Intl.message(
+      'interval',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monday`
+  String get monday {
+    return Intl.message(
+      'Monday',
+      name: 'monday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tuesday`
+  String get tuesday {
+    return Intl.message(
+      'Tuesday',
+      name: 'tuesday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wednesday`
+  String get wednesday {
+    return Intl.message(
+      'Wednesday',
+      name: 'wednesday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thursday`
+  String get thursday {
+    return Intl.message(
+      'Thursday',
+      name: 'thursday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friday`
+  String get friday {
+    return Intl.message(
+      'Friday',
+      name: 'friday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days`
+  String get days {
+    return Intl.message(
+      'Days',
+      name: 'days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `delete`
+  String get delete {
+    return Intl.message(
+      'delete',
+      name: 'delete',
       desc: '',
       args: [],
     );

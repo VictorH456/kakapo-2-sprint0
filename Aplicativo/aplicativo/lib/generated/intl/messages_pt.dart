@@ -22,16 +22,31 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addAlarm": MessageLookupByLibrary.simpleMessage("Adicionar alarme"),
         "alarms": MessageLookupByLibrary.simpleMessage("Alarmes"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "close": MessageLookupByLibrary.simpleMessage("Fechar"),
+        "compartment": MessageLookupByLibrary.simpleMessage("Compartimento"),
         "consultations": MessageLookupByLibrary.simpleMessage("Consultas"),
+        "days": MessageLookupByLibrary.simpleMessage("Dias"),
+        "delete": MessageLookupByLibrary.simpleMessage("Excluir"),
+        "description": MessageLookupByLibrary.simpleMessage("Descrição"),
         "english": MessageLookupByLibrary.simpleMessage("Inglês"),
+        "friday": MessageLookupByLibrary.simpleMessage("Sexta-feira"),
         "home": MessageLookupByLibrary.simpleMessage("Início"),
         "language": MessageLookupByLibrary.simpleMessage("Idioma"),
+        "monday": MessageLookupByLibrary.simpleMessage("Segunda-feira"),
+        "name": MessageLookupByLibrary.simpleMessage("Nome"),
         "portuguese": MessageLookupByLibrary.simpleMessage("Português"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferências"),
+        "save": MessageLookupByLibrary.simpleMessage("Salvar"),
         "spanish": MessageLookupByLibrary.simpleMessage("Espanhol"),
         "statistics": MessageLookupByLibrary.simpleMessage("Estatísticas"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Quinta-feira"),
+        "time": MessageLookupByLibrary.simpleMessage("intervalo"),
         "title": MessageLookupByLibrary.simpleMessage("Título do App"),
-        "toggleTheme": MessageLookupByLibrary.simpleMessage("Alternar Tema")
+        "toggleTheme": MessageLookupByLibrary.simpleMessage("Mudar Tema"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Terça-feira"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Quarta-feira")
       };
 }

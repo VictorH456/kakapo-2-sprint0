@@ -2,7 +2,7 @@
   "@@locale": "en",
   "home": "Home",
   "alarms": "Alarms",
-  "consultations": "Consultations",
+  "consultations": "appointment",
   "statistics": "Statistics",
   "preferences": "Preferences",
   "toggleTheme": "Toggle Theme",
@@ -10,6 +10,20 @@
   "english": "English",
   "portuguese": "Portuguese",
   "spanish": "Spanish",
-  "title": "App Title"
-
+  "title": "App Title",
+  "addAlarm": "Add Alarm",
+  "name": "Name",
+  "compartment": "Compartment",
+  "time": "interval",
+  "description": "Description",
+  "save": "Save",
+  "cancel": "Cancel",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "days": "Days",
+  "close": "Close",
+  "delete": "delete"
 }
