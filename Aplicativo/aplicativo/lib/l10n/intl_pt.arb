@@ -25,5 +25,6 @@
   "friday": "Sexta-feira",
   "days": "Dias",
   "close": "Fechar",
-  "delete": "Excluir"
+  "delete": "Excluir",
+  "noAlarms":"Sem alarmes"
 }

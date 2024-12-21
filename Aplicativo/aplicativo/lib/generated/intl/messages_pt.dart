@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "language": MessageLookupByLibrary.simpleMessage("Idioma"),
         "monday": MessageLookupByLibrary.simpleMessage("Segunda-feira"),
         "name": MessageLookupByLibrary.simpleMessage("Nome"),
+        "noAlarms": MessageLookupByLibrary.simpleMessage("Sem alarmes"),
         "portuguese": MessageLookupByLibrary.simpleMessage("Português"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferências"),
         "save": MessageLookupByLibrary.simpleMessage("Salvar"),

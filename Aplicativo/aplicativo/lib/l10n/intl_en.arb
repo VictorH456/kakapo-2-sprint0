@@ -25,5 +25,6 @@
   "friday": "Friday",
   "days": "Days",
   "close": "Close",
-  "delete": "delete"
+  "delete": "delete",
+  "noAlarms": "noAlarms"
 }

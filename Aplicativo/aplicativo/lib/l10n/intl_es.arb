@@ -25,5 +25,6 @@
   "friday": "Viernes",
   "days": "Dias",
   "close": "Cerrar",
-  "delete": "delete"
+  "delete": "delete",
+  "noAlarms": "sin alarmas"
 }

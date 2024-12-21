@@ -309,6 +309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `noAlarms`
+  String get noAlarms {
+    return Intl.message(
+      'noAlarms',
+      name: 'noAlarms',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -93,11 +93,7 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       home: Scaffold(
-        appBar: AppBar(
-          title: Builder(
-            builder: (context) => Text(S.of(context).title),
-          ),
-        ),
+        appBar: null, // Remove o AppBar
         body: PageView(
           controller: _pageController,
           onPageChanged: (index) {
