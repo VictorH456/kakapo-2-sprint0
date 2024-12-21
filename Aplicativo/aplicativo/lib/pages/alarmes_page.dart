@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Necessário para o FilteringTextInputFormatter
+import 'package:flutter/services.dart';
 import 'package:aplicativo/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +17,12 @@ class _AlarmesPageState extends State<AlarmesPage> {
       compartimentoSelecionado; // Variável para armazenar o compartimento selecionado
   final TextEditingController horarioController =
       TextEditingController(); // Controlador para armazenar o horário inserido
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarAlarmes(); // Carregar os alarmes ao iniciar a página
+  }
 
   // Método para carregar os alarmes do SharedPreferences
   void _carregarAlarmes() async {
@@ -41,12 +46,6 @@ class _AlarmesPageState extends State<AlarmesPage> {
     final String encodedData = json.encode(alarmes);
     bool isSaved = await prefs.setString('alarmes', encodedData);
     print("Alarmes salvos com sucesso: $isSaved");
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _carregarAlarmes(); // Carregar os alarmes ao iniciar a página
   }
 
   void _adicionarAlarme() {
