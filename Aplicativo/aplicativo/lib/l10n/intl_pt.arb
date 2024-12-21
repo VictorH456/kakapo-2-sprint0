@@ -26,5 +26,7 @@
   "days": "Dias",
   "close": "Fechar",
   "delete": "Excluir",
-  "noAlarms":"Sem alarmes"
+  "noAlarms":"Sem alarmes",
+  "minutes": "Minutos",
+  "hours": "Horas"
 }

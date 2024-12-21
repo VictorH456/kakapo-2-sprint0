@@ -26,5 +26,7 @@
   "days": "Days",
   "close": "Close",
   "delete": "delete",
-  "noAlarms": "noAlarms"
+  "noAlarms": "noAlarms",
+  "minutes": "minutes",
+  "hours": "hours"
 }

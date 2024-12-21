@@ -192,13 +192,13 @@ class _AlarmesPageState extends State<AlarmesPage> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  alarmes.removeAt(index);
-                  _salvarAlarmes(); // Salvar após deletar um alarme
+                  alarmes.removeAt(index); // Remove o alarme da lista
+                  _salvarAlarmes(); // Salva os alarmes atualizados
                 });
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Fecha o diálogo
               },
               style: TextButton.styleFrom(
-                foregroundColor: Colors.red, // Cor do texto do botão
+                foregroundColor: Colors.red, // Cor do botão de exclusão
               ),
               child: Text(S.of(context).delete),
             ),

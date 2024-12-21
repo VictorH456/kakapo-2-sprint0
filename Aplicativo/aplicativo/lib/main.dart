@@ -9,36 +9,44 @@ import 'package:aplicativo/pages/estatisticas_page.dart';
 import 'package:aplicativo/pages/preferencias_page.dart';
 
 //dart run intl_utils:generate
-void main() {
-  runApp(MyApp());
+void main() async {
+  // Garante que o framework esteja completamente inicializado
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Carrega as preferências do usuário antes de iniciar o app
+  final prefs = await SharedPreferences.getInstance();
+  final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+  final languageCode = prefs.getString('languageCode') ?? 'en';
+
+  // Inicia o app com as preferências carregadas
+  runApp(MyApp(
+    themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
+    locale: Locale(languageCode),
+  ));
 }
 
 class MyApp extends StatefulWidget {
+  final ThemeMode themeMode;
+  final Locale locale;
+
+  const MyApp({Key? key, required this.themeMode, required this.locale})
+      : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system;
+  late ThemeMode _themeMode;
+  late Locale _locale;
   int _selectedIndex = 0;
-  Locale? _locale;
   final PageController _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    _loadPreferences();
-  }
-
-  Future<void> _loadPreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    final isDarkMode = prefs.getBool('isDarkMode') ?? false;
-    final languageCode = prefs.getString('languageCode') ?? 'en';
-
-    setState(() {
-      _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
-      _locale = Locale(languageCode);
-    });
+    _themeMode = widget.themeMode;
+    _locale = widget.locale;
   }
 
   Future<void> _saveThemePreference(bool isDarkMode) async {
