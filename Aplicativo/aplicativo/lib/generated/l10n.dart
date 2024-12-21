@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `interval`
+  /// `Interval`
   String get time {
     return Intl.message(
-      'interval',
+      'Interval',
       name: 'time',
       desc: '',
       args: [],

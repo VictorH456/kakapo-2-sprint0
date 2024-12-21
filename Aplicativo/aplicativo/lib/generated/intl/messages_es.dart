@@ -43,7 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "spanish": MessageLookupByLibrary.simpleMessage("Español"),
         "statistics": MessageLookupByLibrary.simpleMessage("Estadísticas"),
         "thursday": MessageLookupByLibrary.simpleMessage("Jueves"),
-        "time": MessageLookupByLibrary.simpleMessage("intervalo"),
+        "time": MessageLookupByLibrary.simpleMessage("Intervalo"),
         "title": MessageLookupByLibrary.simpleMessage("Título de la App"),
         "toggleTheme": MessageLookupByLibrary.simpleMessage("Cambiar Tema"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Martes"),
