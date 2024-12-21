@@ -14,7 +14,7 @@
   "addAlarm": "Agregar alarma",
   "name": "Nombre",
   "compartment": "Compartimento",
-  "time": "intervalo",
+  "time": "Intervalo",
   "description": "Descripción",
   "save": "Guardar",
   "cancel": "Cancelar",

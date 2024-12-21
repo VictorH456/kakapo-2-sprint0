@@ -8,6 +8,7 @@ import 'package:aplicativo/pages/consultas_page.dart';
 import 'package:aplicativo/pages/estatisticas_page.dart';
 import 'package:aplicativo/pages/preferencias_page.dart';
 
+//dart run intl_utils:generate
 void main() {
   runApp(MyApp());
 }

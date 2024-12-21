@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Necessário para o FilteringTextInputFormatter
 import 'package:aplicativo/generated/l10n.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AlarmesPage extends StatefulWidget {
   @override
@@ -15,6 +18,36 @@ class _AlarmesPageState extends State<AlarmesPage> {
       compartimentoSelecionado; // Variável para armazenar o compartimento selecionado
   final TextEditingController horarioController =
       TextEditingController(); // Controlador para armazenar o horário inserido
+
+  // Método para carregar os alarmes do SharedPreferences
+  void _carregarAlarmes() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? alarmeData = prefs.getString('alarmes');
+    if (alarmeData != null) {
+      final List<dynamic> alarmeList = json.decode(alarmeData);
+      setState(() {
+        alarmes =
+            alarmeList.map((item) => Map<String, String>.from(item)).toList();
+      });
+      print("Alarmes carregados: $alarmes");
+    } else {
+      print("Nenhum alarme encontrado no SharedPreferences.");
+    }
+  }
+
+  // Método para salvar os alarmes no SharedPreferences
+  void _salvarAlarmes() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String encodedData = json.encode(alarmes);
+    bool isSaved = await prefs.setString('alarmes', encodedData);
+    print("Alarmes salvos com sucesso: $isSaved");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarAlarmes(); // Carregar os alarmes ao iniciar a página
+  }
 
   void _adicionarAlarme() {
     final nomeController = TextEditingController();
@@ -102,6 +135,7 @@ class _AlarmesPageState extends State<AlarmesPage> {
                         .join(', '), // Convertendo a lista em string
                     'descricao': descricaoController.text,
                   });
+                  _salvarAlarmes(); // Salvar os alarmes após adicionar
                   diasSelecionados
                       .clear(); // Limpar a seleção de dias após adicionar
                   compartimentoSelecionado =
@@ -160,6 +194,7 @@ class _AlarmesPageState extends State<AlarmesPage> {
               onPressed: () {
                 setState(() {
                   alarmes.removeAt(index);
+                  _salvarAlarmes(); // Salvar após deletar um alarme
                 });
                 Navigator.of(context).pop();
               },
@@ -213,9 +248,10 @@ class _AlarmesPageState extends State<AlarmesPage> {
           return ListTile(
             title: Text(alarme['nome']!),
             subtitle: Text(
-              'Horário: ${alarme['horario']}, Dias: ${alarme['dias']}',
+              '${S.of(context).time}: ${alarme['horario']}, ${S.of(context).days}: ${alarme['dias']}',
             ),
-            trailing: Text(alarme['compartimento']!),
+            trailing: Text(
+                '${S.of(context).compartment}: ${alarme['compartimento']}'),
             onTap: () =>
                 _verDetalhesAlarme(alarme, index), // Abre os detalhes ao clicar
           );
