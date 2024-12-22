@@ -280,6 +280,26 @@ class S {
     );
   }
 
+  /// `Saturday`
+  String get saturday {
+    return Intl.message(
+      'Saturday',
+      name: 'saturday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sunday`
+  String get sunday {
+    return Intl.message(
+      'Sunday',
+      name: 'sunday',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Days`
   String get days {
     return Intl.message(
@@ -300,41 +320,61 @@ class S {
     );
   }
 
-  /// `delete`
+  /// `Delete`
   String get delete {
     return Intl.message(
-      'delete',
+      'Delete',
       name: 'delete',
       desc: '',
       args: [],
     );
   }
 
-  /// `noAlarms`
+  /// `No Alarms`
   String get noAlarms {
     return Intl.message(
-      'noAlarms',
+      'No Alarms',
       name: 'noAlarms',
       desc: '',
       args: [],
     );
   }
 
-  /// `minutes`
+  /// `Minutes`
   String get minutes {
     return Intl.message(
-      'minutes',
+      'Minutes',
       name: 'minutes',
       desc: '',
       args: [],
     );
   }
 
-  /// `hours`
+  /// `Hours`
   String get hours {
     return Intl.message(
-      'hours',
+      'Hours',
       name: 'hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time to take the medicine`
+  String get alarmDetails {
+    return Intl.message(
+      'Time to take the medicine',
+      name: 'alarmDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time to Notify`
+  String get timeToNotify {
+    return Intl.message(
+      'Time to Notify',
+      name: 'timeToNotify',
       desc: '',
       args: [],
     );

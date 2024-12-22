@@ -23,10 +23,14 @@
   "wednesday": "Wednesday",
   "thursday": "Thursday",
   "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
   "days": "Days",
   "close": "Close",
-  "delete": "delete",
-  "noAlarms": "noAlarms",
-  "minutes": "minutes",
-  "hours": "hours"
+  "delete": "Delete",
+  "noAlarms": "No Alarms",
+  "minutes": "Minutes",
+  "hours": "Hours",
+  "alarmDetails": "Time to take the medicine",
+  "timeToNotify": "Time to Notify"
 }

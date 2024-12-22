@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addAlarm": MessageLookupByLibrary.simpleMessage("Adicionar alarme"),
+        "alarmDetails":
+            MessageLookupByLibrary.simpleMessage("Hora de tomar o remedio"),
         "alarms": MessageLookupByLibrary.simpleMessage("Alarmes"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "close": MessageLookupByLibrary.simpleMessage("Fechar"),
@@ -42,11 +44,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAlarms": MessageLookupByLibrary.simpleMessage("Sem alarmes"),
         "portuguese": MessageLookupByLibrary.simpleMessage("Português"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferências"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Sábado"),
         "save": MessageLookupByLibrary.simpleMessage("Salvar"),
         "spanish": MessageLookupByLibrary.simpleMessage("Espanhol"),
         "statistics": MessageLookupByLibrary.simpleMessage("Estatísticas"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Domingo"),
         "thursday": MessageLookupByLibrary.simpleMessage("Quinta-feira"),
         "time": MessageLookupByLibrary.simpleMessage("Intervalo"),
+        "timeToNotify":
+            MessageLookupByLibrary.simpleMessage("Hora de Notificar"),
         "title": MessageLookupByLibrary.simpleMessage("Título do App"),
         "toggleTheme": MessageLookupByLibrary.simpleMessage("Mudar Tema"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Terça-feira"),

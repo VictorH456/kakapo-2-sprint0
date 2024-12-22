@@ -23,10 +23,14 @@
   "wednesday": "Quarta-feira",
   "thursday": "Quinta-feira",
   "friday": "Sexta-feira",
+  "saturday": "Sábado",
+  "sunday": "Domingo",
   "days": "Dias",
   "close": "Fechar",
   "delete": "Excluir",
   "noAlarms":"Sem alarmes",
   "minutes": "Minutos",
-  "hours": "Horas"
+  "hours": "Horas",
+  "alarmDetails": "Hora de tomar o remedio",
+  "timeToNotify": "Hora de Notificar"
 }
