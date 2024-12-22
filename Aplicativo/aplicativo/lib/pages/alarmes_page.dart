@@ -44,7 +44,7 @@ class _AlarmesPageState extends State<AlarmesPage> {
   void _inicializarNotificacoes() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings(
-            'app_icon'); // Certifique-se de ter um ícone de app
+            'notify'); // Certifique-se de ter um ícone de app
 
     final InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
